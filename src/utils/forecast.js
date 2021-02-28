@@ -9,7 +9,8 @@ const forecast = (lat , long , callback) => {
         {
             callback(body.error , undefined);
         }else{
-            callback(undefined ,body.current.weather_descriptions[0] + ', Temperature : ' + body.current.temperature   );
+         //   console.log(body.current);
+            callback(undefined ,body.current.weather_descriptions[0] + ', The Temperature is: ' + body.current.temperature + "°C" + ' , The wind speed is ' + body.current.wind_speed + ' and humidity is ' + body.current.humidity + "\n" + '. Is it day -> ' + body.current.is_day  );
         }
     })
 }
