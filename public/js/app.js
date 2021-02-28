@@ -14,7 +14,7 @@ const weatherForm = document.querySelector('form')
 const search = document.querySelector('input')
 const messageOne = document.querySelector('#message-1');
 const messageTwo = document.querySelector('#message-2')
-
+const msg = 'Please provide location'
 // messageOne.textContent = 'Form Javascript'
 
 weatherForm.addEventListener('submit', (e)=>{
@@ -27,13 +27,17 @@ weatherForm.addEventListener('submit', (e)=>{
     if(location.length!=0){
     fetch("/weather?location=" + location + "'").then((response)=>{
     response.json().then((data)=>{
-       messageOne.textContent = data.location;
+        if(data.error){
+          messageOne.textContent = data.error;
+        }else{
+       messageOne.textContent = 'Address =>' + data.location;
        messageTwo.textContent = data.forecast;
+        }
     })
 
 })
     }
     else{
-        console.log('please provide location!')
+        messageOne.textContent = 'Ohh , Please provide Location :/'
     }
 })
